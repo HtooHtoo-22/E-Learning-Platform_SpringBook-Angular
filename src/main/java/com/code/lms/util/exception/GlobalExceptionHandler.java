@@ -1,4 +1,4 @@
-package com.code.lms.exception;
+package com.code.lms.util.exception;
 
 import com.code.lms.util.ApiResponse;
 import org.hibernate.service.spi.ServiceException;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ApiResponse<?>> handleUserNotFoundException(ServiceException ex) {
-        ApiResponse<?> response = ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
+        ApiResponse<?> response = ApiResponse.error(HttpStatus.NOT_FOUND,HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
         return ResponseEntity.internalServerError().body(response);
     }
 

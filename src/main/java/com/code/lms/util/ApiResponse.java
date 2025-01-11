@@ -1,38 +1,52 @@
 package com.code.lms.util;
 
+import org.springframework.http.HttpStatus;
+
 public class ApiResponse<T> {
-    private int status;
+
+    private HttpStatus httpStatus;
+    private int statusCode;
     private String message;
     private T data;
 
-    private ApiResponse(int status, String message, T data) {
-        this.status = status;
+    private ApiResponse(HttpStatus httpStatus,int statusCode, String message, T data) {
+        this.httpStatus = httpStatus;
+        this.statusCode = statusCode;
         this.message = message;
         this.data = data;
     }
 
     // Static method for success responses
-    public static <T> ApiResponse<T> success(int status, String message, T data) {
-        return new ApiResponse<>(status, message, data);
+    public static <T> ApiResponse<T> success(HttpStatus httpStatus,int statusCode, String message, T data) {
+        return new ApiResponse<>(httpStatus,statusCode, message, data);
     }
 
     // Static method for error responses (without data)
-    public static <T> ApiResponse<T> error(int status, String message) {
-        return new ApiResponse<>(status, message, null);
+    public static <T> ApiResponse<T> error(HttpStatus httpStatus,int statusCode, String message) {
+        return new ApiResponse<>(httpStatus,statusCode, message, null);
     }
 
     // Static method for error responses (with data)
-    public static <T> ApiResponse<T> error(int status, String message, T data) {
-        return new ApiResponse<>(status, message, data);
+    public static <T> ApiResponse<T> error(HttpStatus httpStatus,int statusCode, String message, T data) {
+        return new ApiResponse<>(httpStatus,statusCode, message, data);
     }
 
     // Getters and setters
-    public int getStatus() {
-        return status;
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getMessage() {

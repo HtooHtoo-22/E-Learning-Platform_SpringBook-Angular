@@ -1,4 +1,4 @@
-package com.code.lms.exception;
+package com.code.lms.util.exception;
 
 public class UserNotFoundException extends  RuntimeException{
     public UserNotFoundException() {
