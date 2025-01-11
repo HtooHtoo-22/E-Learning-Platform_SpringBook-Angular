@@ -8,7 +8,12 @@ public class ApiResponse<T> {
     private int statusCode;
     private String message;
     private T data;
+    private ApiResponse(HttpStatus httpStatus,int statusCode, String message) {
+        this.httpStatus = httpStatus;
+        this.statusCode = statusCode;
+        this.message = message;
 
+    }
     private ApiResponse(HttpStatus httpStatus,int statusCode, String message, T data) {
         this.httpStatus = httpStatus;
         this.statusCode = statusCode;
@@ -19,6 +24,9 @@ public class ApiResponse<T> {
     // Static method for success responses
     public static <T> ApiResponse<T> success(HttpStatus httpStatus,int statusCode, String message, T data) {
         return new ApiResponse<>(httpStatus,statusCode, message, data);
+    }
+    public static <T> ApiResponse<T> success(HttpStatus httpStatus,int statusCode, String message) {
+        return new ApiResponse<>(httpStatus,statusCode, message);
     }
 
     // Static method for error responses (without data)

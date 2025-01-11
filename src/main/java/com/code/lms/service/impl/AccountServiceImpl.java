@@ -1,9 +1,10 @@
-package com.code.lms.service;
+package com.code.lms.service.impl;
 
 import com.code.lms.dto.LoginDTO;
 import com.code.lms.dto.UserDTO;
 import com.code.lms.entity.UserEntity;
 import com.code.lms.repository.UserRepository;
+import com.code.lms.service.AccountService;
 import com.code.lms.util.exception.IncorrectPasswordException;
 import com.code.lms.util.exception.InvalidEmailException;
 import com.code.lms.util.mapper.UserMapper;

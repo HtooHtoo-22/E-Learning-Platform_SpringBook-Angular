@@ -1,9 +1,9 @@
 package com.code.lms.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Table(name="user")
@@ -83,7 +83,7 @@ public class UserEntity {
         }
         if(createdDate == null){
             LocalDateTime now = LocalDateTime.now();
-            createdDate = null ;
+            createdDate = now ;
         }
         if(role == null){
             role = "Student";
@@ -174,7 +174,7 @@ public class UserEntity {
         return admin;
     }
 
-    public void setAdmin(UserEntity admin) {
+    public void setAdmin(   UserEntity admin) {
         this.admin = admin;
     }
 }
