@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ApiResponse<?>> handleUserNotFoundException(ServiceException ex) {
-        ApiResponse<?> response = ApiResponse.error(HttpStatus.NOT_FOUND,HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
-        return ResponseEntity.internalServerError().body(response);
+    @ExceptionHandler(InvalidEmailException.class)
+    public ResponseEntity<ApiResponse<?>> handleInvalidEmailException(InvalidEmailException ex) {
+        ApiResponse<?> response = ApiResponse.error(HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+        return ResponseEntity.badRequest().body(response);
+    }
+    @ExceptionHandler(IncorrectPasswordException.class)
+    public ResponseEntity<ApiResponse<?>> handleIncorrectException(IncorrectPasswordException ex){
+        ApiResponse<?> errorResponse = ApiResponse.error(HttpStatus.BAD_REQUEST,HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
     }
 
 }

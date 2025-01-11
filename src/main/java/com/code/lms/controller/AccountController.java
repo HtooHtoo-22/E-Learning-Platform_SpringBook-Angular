@@ -19,23 +19,9 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<?>> doLogin(@RequestBody LoginDTO loginDTO){
-        String message = accountService.checkEmail(loginDTO);
-        if(message!=null){
-            ApiResponse errorResponse = ApiResponse.error(HttpStatus.BAD_REQUEST,400,message);
-            return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
-        }else{
-            UserDTO userDTO = accountService.checkEmailAndPassword(loginDTO);
-            if(userDTO == null){
-                message = "Incorrect Password";
-                ApiResponse errorResponse = ApiResponse.error(HttpStatus.BAD_REQUEST,400,message);
-                return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
-            }else{
-                message = "Login Successful";
-                ApiResponse successResponse = ApiResponse.success(HttpStatus.OK,200,message,userDTO);
-                return new ResponseEntity<>(successResponse,HttpStatus.OK);
-            }
-
+    public ResponseEntity<ApiResponse<?>> doLogin(@RequestBody LoginDTO loginDTO) {
+        UserDTO user = accountService.login(loginDTO);
+        ApiResponse successResponse = ApiResponse.success(HttpStatus.OK, HttpStatus.OK.value(), "Login Successful", user);
+        return new ResponseEntity<>(successResponse, HttpStatus.OK);
         }
     }
-}
