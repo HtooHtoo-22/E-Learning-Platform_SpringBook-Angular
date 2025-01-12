@@ -6,4 +6,5 @@ import org.apache.catalina.User;
 
 public interface AccountService {
     public UserDTO login(LoginDTO loginDTO);
+    public UserDTO changePassword(Integer id ,String password);
 }

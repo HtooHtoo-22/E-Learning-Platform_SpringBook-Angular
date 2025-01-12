@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UserMapper1 {
@@ -64,5 +66,23 @@ public class UserMapper1 {
         }
 
         return entity;
+    }
+    public  List<UserDTO> toDTOList(List<UserEntity> entities) {
+        if (entities == null) {
+            return null;
+        }
+
+        // Create a new list to store the DTOs
+        List<UserDTO> dtoList = new ArrayList<>();
+
+        // Iterate over the entities and convert each one to a DTO
+        for (UserEntity entity : entities) {
+            UserDTO dto = toDTO(entity);
+            if (dto != null) {
+                dtoList.add(dto);
+            }
+        }
+
+        return dtoList;
     }
 }

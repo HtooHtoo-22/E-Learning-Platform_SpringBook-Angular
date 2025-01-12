@@ -15,6 +15,13 @@ public class UserDTO {
     private Integer adminId;
     private String adminName;
 
+    public boolean isForcePasswordChange() {
+        if(this.role.equals("Teacher")&&this.loginStatus== UserEntity.LoginStatus.UNLOGIN){
+            return true;
+        }
+        return false;
+    }
+
     public String getName() {
         return name;
     }
