@@ -1,15 +1,21 @@
 package com.code.lms.controller;
 
+import com.code.lms.dto.CourseDTO;
 import com.code.lms.dto.UserDTO;
 import com.code.lms.entity.UserEntity;
+import com.code.lms.service.CourseService;
 import com.code.lms.service.UserService;
 import com.code.lms.util.ApiResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,6 +23,9 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CourseService courseService;
 
     private ApiResponse successResponse;
     @PostMapping("/createTeacher")
@@ -43,8 +52,13 @@ public class AdminController {
     public List<UserDTO> getAllActiveStudents(){
         return userService.getAllActiveStudents();
     }
-    @GetMapping("/getAllSuspendedStudents")
-    public List<UserDTO> getAllSuspendedStudents(){
-        return userService.getAllSuspendedStudents();
+    @PostMapping("/createCourse")
+    public CourseDTO createCourse(@RequestParam("file") MultipartFile file,
+                                        @RequestPart("courseDTO")CourseDTO courseDTO) throws IOException {
+        courseDTO.setFile(file);
+        CourseDTO course =courseService.createCourse(courseDTO);
+        System.out.println(courseDTO.getTitle()+courseDTO.getDescription()+courseDTO.getCost()+courseDTO.getAdminId());
+        return course;
     }
+
 }
