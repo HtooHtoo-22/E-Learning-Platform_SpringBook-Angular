@@ -1,9 +1,6 @@
-package com.code.lms.entity;
+package com.code.lms.model.entity;
 
 import jakarta.persistence.*;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "course_payment")

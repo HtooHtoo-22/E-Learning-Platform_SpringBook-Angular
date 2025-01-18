@@ -1,9 +1,8 @@
-package com.code.lms.entity;
+package com.code.lms.model.entity;
 
 import java.time.LocalDateTime;
-import com.code.lms.entity.UserEntity;
+
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
 @Table(name="course")
@@ -24,7 +23,7 @@ public class CourseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Integer id;
 
     @Column(name="title",nullable = false,length = 50)
     private String title;

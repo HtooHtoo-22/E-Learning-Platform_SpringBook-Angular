@@ -1,4 +1,4 @@
-package com.code.lms.entity;
+package com.code.lms.model.entity;
 
 import jakarta.persistence.*;
 

@@ -1,7 +1,7 @@
 package com.code.lms.service.impl;
 
 import com.code.lms.dto.UserDTO;
-import com.code.lms.entity.UserEntity;
+import com.code.lms.model.entity.UserEntity;
 import com.code.lms.repository.UserRepository;
 import com.code.lms.service.UserService;
 import com.code.lms.util.etc.RandomCodeGenerator;
@@ -9,7 +9,6 @@ import com.code.lms.util.exception.InvalidEmailException;
 import com.code.lms.util.exception.NotFoundException;
 import com.code.lms.util.mapper.UserMapper;
 import com.code.lms.util.mapper.UserMapper1;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

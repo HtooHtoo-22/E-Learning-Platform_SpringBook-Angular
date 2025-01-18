@@ -2,19 +2,14 @@ package com.code.lms.service.impl;
 
 import com.code.lms.dto.LoginDTO;
 import com.code.lms.dto.UserDTO;
-import com.code.lms.entity.UserEntity;
+import com.code.lms.model.entity.UserEntity;
 import com.code.lms.repository.UserRepository;
 import com.code.lms.service.AccountService;
 import com.code.lms.util.exception.IncorrectPasswordException;
 import com.code.lms.util.exception.InvalidEmailException;
 import com.code.lms.util.mapper.UserMapper;
-import lombok.extern.java.Log;
-import org.apache.catalina.User;
-import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AccountServiceImpl implements AccountService {

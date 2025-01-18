@@ -1,7 +1,9 @@
 package com.code.lms.controller;
 
 import com.code.lms.dto.UserDTO;
+import com.code.lms.model.entity.User;
 import com.code.lms.service.UserService;
+import com.code.lms.service.impl.TestService;
 import com.code.lms.util.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class TestController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TestService testService;
     private ApiResponse successResponse;
     @GetMapping("/")
     public String greet(HttpServletRequest request){
@@ -38,5 +43,9 @@ public class TestController {
         userService.createTeacher(teacher);
         successResponse = ApiResponse.success(HttpStatus.CREATED,HttpStatus.CREATED.value(),"Created Teacher Successfully");
         return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
+    }
+    @PostMapping("/testRegister")
+    public User register(@RequestBody User user){
+        return testService.register(user);
     }
 }

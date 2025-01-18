@@ -2,16 +2,12 @@ package com.code.lms.controller;
 
 import com.code.lms.dto.CourseDTO;
 import com.code.lms.dto.UserDTO;
-import com.code.lms.entity.UserEntity;
 import com.code.lms.service.CourseService;
 import com.code.lms.service.UserService;
 import com.code.lms.util.ApiResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

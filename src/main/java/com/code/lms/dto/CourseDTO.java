@@ -1,6 +1,6 @@
 package com.code.lms.dto;
 
-import com.code.lms.entity.CourseEntity;
+import com.code.lms.model.entity.CourseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CourseDTO {
@@ -15,6 +15,16 @@ public class CourseDTO {
     private String adminName;
     private CourseEntity.Status status;
     private MultipartFile file;
+
+    private Integer[] teacherIds;
+
+    public Integer[] getTeacherIds() {
+        return teacherIds;
+    }
+
+    public void setTeacherIds(Integer[] teacherIds) {
+        this.teacherIds = teacherIds;
+    }
 
     public MultipartFile getFile() {
         return file;

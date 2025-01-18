@@ -1,8 +1,8 @@
 package com.code.lms.util.mapper;
 
 import com.code.lms.dto.CourseDTO;
-import com.code.lms.entity.CourseEntity;
-import com.code.lms.entity.UserEntity;
+import com.code.lms.model.entity.CourseEntity;
+import com.code.lms.model.entity.UserEntity;
 import com.code.lms.repository.UserRepository;
 import com.code.lms.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

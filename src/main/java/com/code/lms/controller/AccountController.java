@@ -3,7 +3,6 @@ package com.code.lms.controller;
 import com.code.lms.dto.ChangePasswordDTO;
 import com.code.lms.dto.LoginDTO;
 import com.code.lms.dto.UserDTO;
-import com.code.lms.entity.UserEntity;
 import com.code.lms.service.AccountService;
 import com.code.lms.service.UserService;
 import com.code.lms.util.ApiResponse;

@@ -1,6 +1,6 @@
 package com.code.lms.dto;
 
-import com.code.lms.entity.UserEntity;
+import com.code.lms.model.entity.UserEntity;
 
 public class UserDTO {
     private String name;
