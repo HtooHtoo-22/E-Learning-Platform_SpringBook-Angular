@@ -48,4 +48,9 @@ public class TestController {
     public User register(@RequestBody User user){
         return testService.register(user);
     }
+
+    @PostMapping("/testLogin")
+    public String login(@RequestBody User user){
+        return testService.verify(user);
+    }
 }
