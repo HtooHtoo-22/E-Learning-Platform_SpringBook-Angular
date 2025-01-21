@@ -4,10 +4,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Add this l
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MainContentComponent } from './components/main-content/main-content.component';
+import { StudentListComponent } from './components/my-components/student/student-list/student-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavigationComponent,
+    MainContentComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,
