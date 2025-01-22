@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         teacher.setRole("Teacher");
         teacher.setPassword(RandomCodeGenerator.generateCode());
-        teacher.setLoginStatus(UserEntity.LoginStatus.UNLOGIN);
+        teacher.setLoginStatus("Unlogin");
         UserEntity teacherEntity = userMapper1.toEntity(teacher);
 
         userRepo.save(teacherEntity);

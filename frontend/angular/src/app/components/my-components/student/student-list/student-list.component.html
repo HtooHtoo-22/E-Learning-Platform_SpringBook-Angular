@@ -1,1 +1,29 @@
-<p>student-list works!</p>
+<!-- student-list.component.html -->
+<div *ngIf="students$ | async as students; else loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>City</th>
+          <th>Role</th>
+          <th>Created Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.gender }}</td>
+          <td>{{ student.city }}</td>
+          <td>{{ student.role }}</td>
+          <td>{{ student.createdDate | date: 'mediumDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #loading>
+    <p>Loading students...</p>
+  </ng-template>

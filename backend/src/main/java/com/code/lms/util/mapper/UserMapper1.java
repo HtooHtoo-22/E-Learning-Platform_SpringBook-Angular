@@ -29,8 +29,8 @@ public class UserMapper1 {
         dto.setGender(entity.getGender());
         dto.setRole(entity.getRole());
         dto.setCreatedDate(entity.getCreatedDate() != null ? entity.getCreatedDate().format(DATE_FORMATTER) : null);
-        dto.setStatus(entity.getStatus());
-        dto.setLoginStatus(entity.getLoginStatus());
+        dto.setStatus(entity.getStatus() != null ? entity.getStatus().getDisplayName() : null);
+        dto.setLoginStatus(entity.getLoginStatus() != null ? entity.getLoginStatus().getDisplayName() : null);
 
         if (entity.getAdmin() != null) {
             dto.setAdminId(entity.getAdmin().getId());
@@ -53,8 +53,16 @@ public class UserMapper1 {
         entity.setCity(dto.getCity());
         entity.setGender(dto.getGender());
         entity.setRole(dto.getRole());
-        entity.setStatus(dto.getStatus());
-        entity.setLoginStatus(dto.getLoginStatus());
+
+
+        if (dto.getStatus() != null) {
+            entity.setStatus(UserEntity.Status.valueOf(dto.getStatus().toUpperCase()));
+        }
+
+        // Convert loginStatus string to enum
+        if (dto.getLoginStatus() != null) {
+            entity.setLoginStatus(UserEntity.LoginStatus.valueOf(dto.getLoginStatus().toUpperCase()));
+        }
 
         if (dto.getCreatedDate() != null) {
             entity.setCreatedDate(LocalDateTime.parse(dto.getCreatedDate(), DATE_FORMATTER));

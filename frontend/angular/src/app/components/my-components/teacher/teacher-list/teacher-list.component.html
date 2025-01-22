@@ -1,0 +1,33 @@
+<!-- teacher-list.component.html -->
+<div *ngIf="teachers$ | async as teachers; else loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Gender</th>
+          <th>Role</th>
+          <th>Created Date</th>
+          <th>Login Status</th>
+          <th>Admin Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teacher of teachers">
+          <td>{{ teacher.name }}</td>
+          <td>{{ teacher.email }}</td>
+          <td>{{ teacher.city }}</td>
+          <td>{{ teacher.gender }}</td>
+          <td>{{ teacher.role }}</td>
+          <td>{{ teacher.createdDate | date: 'mediumDate' }}</td>
+          <td>{{ teacher.loginStatus }}</td>
+          <td>{{ teacher.adminName || 'N/A' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #loading>
+    <p>Loading teachers...</p>
+  </ng-template>

@@ -10,13 +10,13 @@ public class UserDTO {
     private String gender;
     private String role;
     private String createdDate;
-    private UserEntity.Status status;
-    private UserEntity.LoginStatus loginStatus;
+    private String status;
+    private String loginStatus;
     private Integer adminId;
     private String adminName;
 
     public boolean isForcePasswordChange() {
-        if(this.role.equals("Teacher")&&this.loginStatus== UserEntity.LoginStatus.UNLOGIN){
+        if(this.role.equals("Teacher")&&this.loginStatus.equals("Unlogin")){
             return true;
         }
         return false;
@@ -78,19 +78,19 @@ public class UserDTO {
         this.createdDate = createdDate;
     }
 
-    public UserEntity.Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(UserEntity.Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public UserEntity.LoginStatus getLoginStatus() {
+    public String getLoginStatus() {
         return loginStatus;
     }
 
-    public void setLoginStatus(UserEntity.LoginStatus loginStatus) {
+    public void setLoginStatus(String loginStatus) {
         this.loginStatus = loginStatus;
     }
 

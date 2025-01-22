@@ -7,13 +7,20 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { StudentListComponent } from './components/my-components/student/student-list/student-list.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { provideHttpClient } from '@angular/common/http';
+import { TeacherListComponent } from './components/my-components/teacher/teacher-list/teacher-list.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     MainContentComponent,
-    StudentListComponent
+    StudentListComponent,
+    SidebarComponent,
+    TeacherListComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,8 @@ import { StudentListComponent } from './components/my-components/student/student
     ReactiveFormsModule // Add this line
   ],
   providers: [
-    provideClientHydration(withEventReplay()) // This is correct
+    provideClientHydration(withEventReplay()) ,
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
