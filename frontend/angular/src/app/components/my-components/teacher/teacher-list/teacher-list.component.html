@@ -15,6 +15,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let teacher of teachers">
+          <td> {{teacher.id}} </td>
           <td>{{ teacher.name }}</td>
           <td>{{ teacher.email }}</td>
           <td>{{ teacher.city }}</td>
@@ -23,6 +24,9 @@
           <td>{{ teacher.createdDate | date: 'mediumDate' }}</td>
           <td>{{ teacher.loginStatus }}</td>
           <td>{{ teacher.adminName || 'N/A' }}</td>
+          <td>
+            <a [routerLink]="['/teacher/editteacher', teacher.id]">Edit</a>
+          </td>
         </tr>
       </tbody>
     </table>

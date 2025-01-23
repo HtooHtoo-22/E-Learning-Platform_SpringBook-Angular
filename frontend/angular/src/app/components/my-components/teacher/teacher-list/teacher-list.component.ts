@@ -15,5 +15,7 @@ export class TeacherListComponent {
     constructor(private userService: UserService) { }
     ngOnInit() {
         this.teachers$ = this.userService.getAllActiveTeachers();
+        console.log(this.teachers$);
+        
     }
 }

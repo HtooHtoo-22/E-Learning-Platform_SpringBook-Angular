@@ -10,6 +10,7 @@ import { StudentListComponent } from './components/my-components/student/student
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { provideHttpClient } from '@angular/common/http';
 import { TeacherListComponent } from './components/my-components/teacher/teacher-list/teacher-list.component';
+import { TeacherEditComponent } from './components/my-components/teacher/teacher-edit/teacher-edit.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TeacherListComponent } from './components/my-components/teacher/teacher
     MainContentComponent,
     StudentListComponent,
     SidebarComponent,
-    TeacherListComponent
+    TeacherListComponent,
+    TeacherEditComponent
   
   ],
   imports: [
