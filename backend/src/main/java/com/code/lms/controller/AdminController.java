@@ -56,5 +56,15 @@ public class AdminController {
         System.out.println(courseDTO.getTitle()+courseDTO.getDescription()+courseDTO.getCost()+courseDTO.getAdminId());
         return course;
     }
+    @GetMapping("/teachers/edit/{id}")
+    public UserDTO getTeacherById(@PathVariable("id")Integer trId){
+        UserDTO editTeacher = userService.getUserById(trId);
+        return editTeacher;
+    }
+    @PutMapping("/teachers/update/{id}")
+    public ApiResponse<UserDTO> updateTeacher(@PathVariable("id")Integer trId,@RequestBody UserDTO teacher){
+        System.out.println(trId+" And "+teacher);
+        return new ApiResponse<UserDTO>();
+    }
 
 }

@@ -88,4 +88,11 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDTOList = userMapper1.toDTOList(userEntityList);
         return userDTOList;
     }
+    @Override
+    public UserDTO getUserById(Integer id){
+        UserEntity userEntity = userRepo.findById(id).orElseThrow(()->
+                new NotFoundException("User Not Found Wit This ID :"+id));
+        UserDTO userDTO = userMapper1.toDTO(userEntity);
+        return userDTO;
+    }
 }

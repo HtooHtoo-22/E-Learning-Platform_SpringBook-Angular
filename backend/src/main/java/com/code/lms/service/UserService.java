@@ -12,4 +12,5 @@ public interface UserService {
     public List<UserDTO> getAllSuspendedTeachers();
     public List<UserDTO> getAllActiveStudents();
     public List<UserDTO> getAllSuspendedStudents();
+    public UserDTO getUserById(Integer id);
 }

@@ -16,12 +16,13 @@ public class UserMapper1 {
     @Autowired
     private UserRepository userRepo;
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    public static UserDTO toDTO(UserEntity entity) {
+    public UserDTO toDTO(UserEntity entity) {
         if (entity == null) {
             return null;
         }
 
         UserDTO dto = new UserDTO();
+        dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setEmail(entity.getEmail());
         dto.setPassword(entity.getPassword()); // Consider not mapping passwords for security

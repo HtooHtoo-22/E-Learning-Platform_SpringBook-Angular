@@ -36,6 +36,10 @@ public class ApiResponse<T> {
         this.status = status;
     }
 
+    public ApiResponse() {
+
+    }
+
     // Static method for success responses
     public static <T> ApiResponse<T> success(HttpStatus httpStatus,int statusCode, String message, T data) {
         return new ApiResponse<>(httpStatus,statusCode, message, data);

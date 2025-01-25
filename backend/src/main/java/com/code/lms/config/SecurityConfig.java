@@ -17,6 +17,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -43,10 +49,25 @@ public class SecurityConfig {
 //                        .addFilterBefore(jwtFilter , UsernamePasswordAuthenticationFilter.class);
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS and reuse the configuration
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll() // Allow all requests without authentication
                 );
+
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:4200")); // Frontend origin
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With"));
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config); // Apply to all endpoints
+        return source;
     }
     @Bean
     public AuthenticationProvider authenticationProvider(){
