@@ -15,6 +15,7 @@ export class TeacherService {
     return this.http.get<User>(`${this.apiUrl}/edit/${id}`);
   }
   updateTeacher(id: number, teacher: User): Observable<ApiResponse<User>> {
-    return this.http.put<ApiResponse<User>>('${this.apiUrl}/update/${id}', teacher);
+    return this.http.put<ApiResponse<User>>(`${this.apiUrl}/update/${id}`, teacher);
+
   }
 }

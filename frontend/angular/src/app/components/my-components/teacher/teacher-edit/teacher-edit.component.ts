@@ -15,6 +15,7 @@ export class TeacherEditComponent {
   teacherForm: FormGroup;
   teacherId: number = 0;
   teacher !: User ;
+  teacherData !: User ;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,18 +33,25 @@ export class TeacherEditComponent {
     this.teacherId = this.route.snapshot.params['id'];
       console.log('Editing teacher with id: ', this.teacherId);
       this.teacherService.getTeacher(this.teacherId).subscribe((data) => {
+        this.teacherData = data;
         this.teacherForm.patchValue({
           name: data.name,
           city: data.city,
           gender: data.gender,
+
         });
       });
   }
 
   onSubmit(): void {
     if(this.teacherForm.valid) {
-      this.teacher = this.teacherForm.value;
-      this.teacherService.updateTeacher(this.teacherId, this.teacher).subscribe(() => {
+      const updatedValues = this.teacherForm.value; // Get form values
+      this.teacherData = {
+        ...this.teacherData, // Spread the original data
+        ...updatedValues,   // Override with form values
+      };
+      console.log(this.teacherData);  
+      this.teacherService.updateTeacher(this.teacherId, this.teacherData).subscribe(() => {
         this.router.navigate(['/teacher']);
       });
     }
