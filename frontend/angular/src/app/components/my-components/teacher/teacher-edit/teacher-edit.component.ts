@@ -3,6 +3,7 @@ import { TeacherService } from '../../../../services/teacher/service/teacher.ser
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../../models/user';
+import { ApiResponse } from '../../../../models/apiresponse';
 
 @Component({
   selector: 'app-teacher-edit',
@@ -16,7 +17,7 @@ export class TeacherEditComponent {
   teacherId: number = 0;
   teacher !: User ;
   teacherData !: User ;
-
+  updateMessage: string | null = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -51,8 +52,20 @@ export class TeacherEditComponent {
         ...updatedValues,   // Override with form values
       };
       console.log(this.teacherData);  
-      this.teacherService.updateTeacher(this.teacherId, this.teacherData).subscribe(() => {
-        this.router.navigate(['/teacher']);
+      // this.teacherService.updateTeacher(this.teacherId, this.teacherData).subscribe(() => {
+      //   this.router.navigate(['/teacher']);
+      // });
+      this.teacherService.updateTeacher(this.teacherId, this.teacherData).subscribe({
+          next: (response: ApiResponse<User>) => {
+          this.updateMessage = response.message; // Store the message
+          setTimeout(() => {
+            this.router.navigate(['/teacher']); // Navigate after a delay
+          }, 2000); // Wait 2 seconds before navigating
+        },
+        error: (err) => {
+          this.updateMessage = 'Failed to update teacher.'; // Handle error message
+          console.error('Update failed:', err);
+        },
       });
     }
     

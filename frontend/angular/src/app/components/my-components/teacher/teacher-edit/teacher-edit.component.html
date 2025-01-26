@@ -1,3 +1,6 @@
+<div *ngIf="updateMessage" class="message">
+  {{ updateMessage }}
+</div>
 <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
     <!-- Name Field -->
     <div>
