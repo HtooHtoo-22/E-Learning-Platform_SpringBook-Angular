@@ -1,51 +1,52 @@
 <div *ngIf="updateMessage" class="message">
   {{ updateMessage }}
 </div>
-<form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
-    <!-- Name Field -->
-    <div>
-      <label for="name">Name:</label>
-      <input id="name" formControlName="name" placeholder="Enter name" />
-      <!-- Validation Messages for Name -->
-      <div *ngIf="teacherForm.get('name')?.invalid && teacherForm.get('name')?.touched">
-        <small class="error" *ngIf="teacherForm.get('name')?.errors?.['required']">
-          Name is required.
-        </small>
-      </div>
+
+<form [formGroup]="teacherForm" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- Name Field -->
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" placeholder="Enter name" />
+    <!-- Validation Messages for Name -->
+    <div *ngIf="teacherForm.get('name')?.invalid && teacherForm.get('name')?.touched" class="error-message">
+      <small *ngIf="teacherForm.get('name')?.errors?.['required']">
+        Name is required.
+      </small>
     </div>
-  
-    <!-- City Field -->
-    <div>
-      <label for="city">City:</label>
-      <input id="city" formControlName="city" placeholder="Enter city" />
-      <!-- Validation Messages for City -->
-      <div *ngIf="teacherForm.get('city')?.invalid && teacherForm.get('city')?.touched">
-        <small class="error" *ngIf="teacherForm.get('city')?.errors?.['required']">
-          City is required.
-        </small>
-        <small class="error" *ngIf="teacherForm.get('city')?.errors?.['minlength']">
-          City must be at least 3 characters long.
-        </small>
-      </div>
+  </div>
+
+  <!-- City Field -->
+  <div class="form-group">
+    <label for="city">City:</label>
+    <input id="city" formControlName="city" placeholder="Enter city" />
+    <!-- Validation Messages for City -->
+    <div *ngIf="teacherForm.get('city')?.invalid && teacherForm.get('city')?.touched" class="error-message">
+      <small *ngIf="teacherForm.get('city')?.errors?.['required']">
+        City is required.
+      </small>
+      <small *ngIf="teacherForm.get('city')?.errors?.['minlength']">
+        City must be at least 3 characters long.
+      </small>
     </div>
-  
-    <!-- Gender Field -->
-    <div>
-      <label for="gender">Gender:</label>
-      <select id="gender" formControlName="gender">
-        <option value="" disabled>Select gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-      <!-- Validation Messages for Gender -->
-      <div *ngIf="teacherForm.get('gender')?.invalid && teacherForm.get('gender')?.touched">
-        <small class="error" *ngIf="teacherForm.get('gender')?.errors?.['required']">
-          Gender is required.
-        </small>
-      </div>
+  </div>
+
+  <!-- Gender Field -->
+  <div class="form-group">
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender">
+      <option value="" disabled>Select gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <!-- Validation Messages for Gender -->
+    <div *ngIf="teacherForm.get('gender')?.invalid && teacherForm.get('gender')?.touched" class="error-message">
+      <small *ngIf="teacherForm.get('gender')?.errors?.['required']">
+        Gender is required.
+      </small>
     </div>
-  
-    <!-- Submit Button -->
-    <button type="submit" [disabled]="teacherForm.invalid">Submit</button>
-  </form>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="teacherForm.invalid" class="submit-button">Submit</button>
+</form>

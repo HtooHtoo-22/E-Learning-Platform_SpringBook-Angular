@@ -1,37 +1,55 @@
-<!-- teacher-list.component.html -->
 <div *ngIf="teachers$ | async as teachers; else loading">
+  <div class="container">
+    <h1>Teacher List</h1>
+
+    <!-- Create New Teacher Button -->
+    <a routerLink="/teacher/create" class="create-button">Create New Teacher</a>
+
+    <!-- Teacher List Table -->
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Email</th>
-          <th>City</th>
           <th>Gender</th>
+          <th>City</th>
           <th>Role</th>
           <th>Created Date</th>
+          <th>Created Admin Name</th>
           <th>Login Status</th>
-          <th>Admin Name</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let teacher of teachers">
-          <td> {{teacher.id}} </td>
           <td>{{ teacher.name }}</td>
           <td>{{ teacher.email }}</td>
-          <td>{{ teacher.city }}</td>
           <td>{{ teacher.gender }}</td>
+          <td>{{ teacher.city }}</td>
           <td>{{ teacher.role }}</td>
-          <td>{{ teacher.createdDate | date: 'mediumDate' }}</td>
-          <td>{{ teacher.loginStatus }}</td>
-          <td>{{ teacher.adminName || 'N/A' }}</td>
+          <td>{{ teacher.createdDate | date: 'short' }}</td>
+          <!-- <td [ngStyle]="{ color: teacher.password === 'teacher' ? 'red' : 'green' }">
+            {{ teacher.password === 'teacher' ? teacher.generate_password : 'Logged In!' }}
+          </td> -->
+          <td>{{ teacher.adminName }}</td>
+          <td> {{teacher.loginStatus}} </td>
           <td>
-            <a [routerLink]="['/teacher/editteacher', teacher.id]">Edit</a>
+            <a [routerLink]="['/teacher/editteacher', teacher.id]">
+              <i class="fas fa-edit"></i>Edit
+            </a>
+            <!-- <a (click)="" style="cursor: pointer; margin-left: 10px;"> -->
+              <i class="fas fa-trash-alt"></i>
+            <!-- </a> -->
           </td>
         </tr>
       </tbody>
     </table>
+
+    <!-- Restore Teacher Button -->
+    <a routerLink="/teacher/restore" class="create-button">Restore Teacher</a>
   </div>
-  
-  <ng-template #loading>
-    <p>Loading teachers...</p>
-  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Loading teachers...</p>
+</ng-template>

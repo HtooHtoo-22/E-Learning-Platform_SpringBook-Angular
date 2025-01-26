@@ -11,6 +11,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { provideHttpClient } from '@angular/common/http';
 import { TeacherListComponent } from './components/my-components/teacher/teacher-list/teacher-list.component';
 import { TeacherEditComponent } from './components/my-components/teacher/teacher-edit/teacher-edit.component';
+import { TeacherCreateComponent } from './components/my-components/teacher/teacher-create/teacher-create.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TeacherEditComponent } from './components/my-components/teacher/teacher
     StudentListComponent,
     SidebarComponent,
     TeacherListComponent,
-    TeacherEditComponent
+    TeacherEditComponent,
+    TeacherCreateComponent
   
   ],
   imports: [

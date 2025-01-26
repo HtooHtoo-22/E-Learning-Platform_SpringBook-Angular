@@ -1,0 +1,85 @@
+
+<div class="form-container">
+    <!-- Display Message -->
+    <div *ngIf="message" class="message" [ngClass]="{'success': !error, 'error': error}">
+      {{ message }}
+    </div>
+  
+    <!-- Teacher Creation Form -->
+    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" placeholder="Enter name" />
+        <div *ngIf="teacherForm.get('name')?.invalid && teacherForm.get('name')?.touched" class="error-message">
+          <small *ngIf="teacherForm.get('name')?.errors?.['required']">
+            Name is required.
+          </small>
+          <small *ngIf="teacherForm.get('name')?.errors?.['minlength']">
+            Name must be at least 3 characters long.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" placeholder="Enter email" />
+        <div *ngIf="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched" class="error-message">
+          <small *ngIf="teacherForm.get('email')?.errors?.['required']">
+            Email is required.
+          </small>
+          <small *ngIf="teacherForm.get('email')?.errors?.['email']">
+            Please enter a valid email address.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input id="password" type="password" formControlName="password" placeholder="Enter password" />
+        <div *ngIf="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched" class="error-message">
+          <small *ngIf="teacherForm.get('password')?.errors?.['required']">
+            Password is required.
+          </small>
+          <small *ngIf="teacherForm.get('password')?.errors?.['minlength']">
+            Password must be at least 6 characters long.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Gender Field -->
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" formControlName="gender">
+          <option value="" disabled>Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div *ngIf="teacherForm.get('gender')?.invalid && teacherForm.get('gender')?.touched" class="error-message">
+          <small *ngIf="teacherForm.get('gender')?.errors?.['required']">
+            Gender is required.
+          </small>
+        </div>
+      </div>
+  
+      <!-- City Field -->
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input id="city" formControlName="city" placeholder="Enter city" />
+        <div *ngIf="teacherForm.get('city')?.invalid && teacherForm.get('city')?.touched" class="error-message">
+          <small *ngIf="teacherForm.get('city')?.errors?.['required']">
+            City is required.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Role Field -->
+      
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="teacherForm.invalid" class="submit-button">Create Teacher</button>
+    </form>
+  </div>

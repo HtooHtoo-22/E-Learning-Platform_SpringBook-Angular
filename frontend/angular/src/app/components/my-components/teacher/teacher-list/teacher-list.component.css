@@ -1,18 +1,75 @@
-/* teacher-list.component.css */
+/* Table Styling */
 table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
+  width: 70%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #003366;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Hover effect for rows */
+}
+
+/* General Page Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fc;
+  color: #003366;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #003366;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.container {
+  z-index: 1; /* Ensure the container is above the sidebar */
+}
+
+/* Button Styling (Link styled as a button) */
+.create-button {
+  display: inline-block;
+  background-color: #003366;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  margin-left: 300px;
+}
+
+.create-button:hover {
+  background-color: #1a4d8f; /* Darker blue on hover */
+}
+
+.create-button:active {
+  background-color: #002147; /* Even darker blue on click */
+}
+
+/* Action Icons */
+.fas {
+  font-size: 18px;
+  color: #003366;
+  transition: color 0.3s ease;
+}
+
+.fas:hover {
+  color: #1a4d8f; /* Darker blue on hover */
+}

@@ -1,4 +1,4 @@
-/* General Form Styling */
+/* Form Container */
 .form-container {
     max-width: 500px;
     margin: 20px auto;
@@ -69,8 +69,7 @@
   /* Message Styling */
   .message {
     padding: 10px;
-    margin: 20px auto;
-    max-width: 500px;
+    margin-bottom: 20px;
     border-radius: 4px;
     text-align: center;
     font-size: 16px;

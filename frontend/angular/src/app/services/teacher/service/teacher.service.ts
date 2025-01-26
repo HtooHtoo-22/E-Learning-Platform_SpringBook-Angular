@@ -18,4 +18,7 @@ export class TeacherService {
     return this.http.put<ApiResponse<User>>(`${this.apiUrl}/update/${id}`, teacher);
 
   }
+  createTeacher(teacher: User): Observable<ApiResponse<User>> {
+    return this.http.post<ApiResponse<User>>(`${this.apiUrl}/create`, teacher);
+  }
 }
