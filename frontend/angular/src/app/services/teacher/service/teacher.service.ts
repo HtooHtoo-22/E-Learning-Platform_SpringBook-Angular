@@ -21,4 +21,7 @@ export class TeacherService {
   createTeacher(teacher: User): Observable<ApiResponse<User>> {
     return this.http.post<ApiResponse<User>>(`${this.apiUrl}/create`, teacher);
   }
+  suspendTeacher(id: number): Observable<ApiResponse<User>> {
+    return this.http.put<ApiResponse<User>>(`${this.apiUrl}/suspend/${id}`, null);
+  }
 }

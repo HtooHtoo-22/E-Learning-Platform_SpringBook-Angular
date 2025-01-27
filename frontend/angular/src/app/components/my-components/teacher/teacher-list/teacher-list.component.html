@@ -37,9 +37,9 @@
             <a [routerLink]="['/teacher/editteacher', teacher.id]">
               <i class="fas fa-edit"></i>Edit
             </a>
-            <!-- <a (click)="" style="cursor: pointer; margin-left: 10px;"> -->
-              <i class="fas fa-trash-alt"></i>
-            <!-- </a> -->
+            <a (click)="suspendTeacher(teacher.id)" style="cursor: pointer; margin-left: 10px;"> -->
+              Delete
+            </a>
           </td>
         </tr>
       </tbody>
