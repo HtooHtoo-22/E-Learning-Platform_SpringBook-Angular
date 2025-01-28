@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 export class TeacherListComponent {
     teachers$ !: Observable<User[]> ;
     message !: string;
+    teachers !: User[];
+    error : boolean = false;
     constructor(private userService: UserService, private teacherService: TeacherService, private router: Router) { }
     
     ngOnInit() {
@@ -25,14 +27,19 @@ export class TeacherListComponent {
     suspendTeacher(teacherId : number){
       this.teacherService.suspendTeacher(teacherId).subscribe({
         next: (response: { message: string }) => {
+            
             this.message = response.message;
             
             // Navigate after a delay (if needed)
             setTimeout(() => {
-                this.router.navigate(['/teacher/create']);
+              // Update the UI by removing the suspended teacher from the list
+              this.teachers$ = this.userService.getAllActiveTeachers();
+
+                this.router.navigate(['/teacher']);
             }, 2000); // Adjust the delay as needed
         },
         error: (error: { error: { message: string } }) => {
+          this.error = true;
             this.message = error.error.message;
             alert("Error in suspending teacher: " + this.message); // Provide more specific feedback
         }

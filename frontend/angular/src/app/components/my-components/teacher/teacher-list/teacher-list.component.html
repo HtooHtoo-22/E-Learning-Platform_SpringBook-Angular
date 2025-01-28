@@ -1,4 +1,4 @@
-<div *ngIf="message" class="message">
+<div *ngIf="message" class="message" [ngClass]="{'success': !error, 'error': error}">
   {{ message }}
 </div>
 <div *ngIf="teachers$ | async as teachers; else loading">
