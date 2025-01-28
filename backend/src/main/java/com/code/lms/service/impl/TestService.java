@@ -1,5 +1,6 @@
 package com.code.lms.service.impl;
 
+import com.code.lms.dto.LoginDTO;
 import com.code.lms.model.entity.User;
 import com.code.lms.repository.TestUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,11 @@ public class TestService {
             return jwtService.generateToken(user.getUserName());
         return "fail";
     }
+//    public String login(LoginDTO loginDTO) {
+//        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken
+//                (user.getUserName(),user.getPassword()));
+//        if(authentication.isAuthenticated())
+//            return jwtService.generateToken(user.getUserName());
+//        return "fail";
+//    }
 }

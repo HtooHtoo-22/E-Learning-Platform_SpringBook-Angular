@@ -1,0 +1,48 @@
+<div class="form-container">
+    <h2>Login</h2>
+  
+    <!-- Success/Error Message -->
+    <div *ngIf="message" class="message" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+      {{ message }}
+    </div>
+  
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email/Username Field -->
+      <div class="form-group">
+        <label for="email">Email or Username</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="Enter your email or username"
+        />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email or username is required.</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+            Password must be at least 6 characters long.
+          </span>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="submit-button" [disabled]="loginForm.invalid || isLoading">
+        {{ isLoading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+  </div>

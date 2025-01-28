@@ -2,9 +2,12 @@ package com.code.lms.service;
 
 import com.code.lms.dto.LoginDTO;
 import com.code.lms.dto.UserDTO;
-import org.apache.catalina.User;
+import com.code.lms.model.entity.User;
 
 public interface AccountService {
-    public UserDTO login(LoginDTO loginDTO);
+    public String login(LoginDTO loginDTO);
     public UserDTO changePassword(Integer id ,String password);
+    public com.code.lms.model.entity.User register(User user );
+    public String verify(User user);
+
 }

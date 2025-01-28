@@ -12,6 +12,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { TeacherListComponent } from './components/my-components/teacher/teacher-list/teacher-list.component';
 import { TeacherEditComponent } from './components/my-components/teacher/teacher-edit/teacher-edit.component';
 import { TeacherCreateComponent } from './components/my-components/teacher/teacher-create/teacher-create.component';
+import { LoginComponent } from './components/my-components/login/login.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TeacherCreateComponent } from './components/my-components/teacher/teach
     SidebarComponent,
     TeacherListComponent,
     TeacherEditComponent,
-    TeacherCreateComponent
+    TeacherCreateComponent,
+    LoginComponent
   
   ],
   imports: [

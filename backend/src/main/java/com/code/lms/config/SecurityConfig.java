@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -36,23 +37,36 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain createFilter(HttpSecurity http) throws Exception {
-//        http
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(request -> request
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request
 //                        .requestMatchers("testRegister","testLogin","students")
 //                        .permitAll()
-//                        .anyRequest().authenticated())//any request to the application must be authenticated
-//                .formLogin(Customizer.withDefaults())// Configures a login form for authentication.|Uses the default login form provided by Spring Security.
-//                .httpBasic(Customizer.withDefaults())//Configures HTTP Basic Authentication.
-//                .sessionManagement(session ->
-//                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//Set session policy to STATELESS
-//                        .addFilterBefore(jwtFilter , UsernamePasswordAuthenticationFilter.class);
-        http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF protection
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS and reuse the configuration
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // Allow all requests without authentication
-                );
+                        .anyRequest().authenticated())//any request to the application must be authenticated
+                .formLogin(Customizer.withDefaults())// Configures a login form for authentication.|Uses the default login form provided by Spring Security.
+                .httpBasic(Customizer.withDefaults())//Configures HTTP Basic Authentication.
+                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS and reuse the configuration
+//                .authorizeHttpRequests(auth -> auth
+//                        .anyRequest().permitAll() // Allow all requests without authentication
+//                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//Set session policy to STATELESS
+                        .addFilterBefore(jwtFilter , UsernamePasswordAuthenticationFilter.class)
+//        http
+//                .csrf(csrf -> csrf.disable()) // Disable CSRF protection
+               ;
+
+
+
+
+
+
+//        http
+//                .csrf(csrf -> csrf.disable()) // Disable CSRF protection
+//                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS and reuse the configuration
+//                .authorizeHttpRequests(auth -> auth
+//                        .anyRequest().permitAll() // Allow all requests without authentication
+//                );
 
         return http.build();
     }
@@ -72,7 +86,8 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(new BCryptPasswordEncoder(10));
+        //provider.setPasswordEncoder(new BCryptPasswordEncoder(10));
+        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
         provider.setUserDetailsService(userDetailService);
         return provider;
     }

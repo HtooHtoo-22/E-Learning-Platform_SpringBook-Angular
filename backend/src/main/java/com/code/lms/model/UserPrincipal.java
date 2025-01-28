@@ -1,6 +1,7 @@
 package com.code.lms.model;
 
 import com.code.lms.model.entity.User;
+import com.code.lms.model.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,10 +10,9 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
-    //To represent the authenticated user
-    private User user;
+    private UserEntity user;
 
-    public UserPrincipal(User user) {
+    public UserPrincipal(UserEntity user) {
         this.user = user;
     }
 
@@ -23,12 +23,13 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
+        System.out.println("Retrieved Password: " + user.getPassword());
         return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUserName();
+        return user.getName();
     }
 
     @Override

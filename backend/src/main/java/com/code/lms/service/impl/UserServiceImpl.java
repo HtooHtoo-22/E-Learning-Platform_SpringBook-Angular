@@ -4,6 +4,7 @@ import com.code.lms.dto.UserDTO;
 import com.code.lms.model.entity.UserEntity;
 import com.code.lms.repository.UserRepository;
 import com.code.lms.service.UserService;
+import com.code.lms.util.ApiResponse;
 import com.code.lms.util.etc.RandomCodeGenerator;
 import com.code.lms.util.exception.InvalidEmailException;
 import com.code.lms.util.exception.NotFoundException;
@@ -93,6 +94,16 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepo.findById(id).orElseThrow(()->
                 new NotFoundException("User Not Found Wit This ID :"+id));
         UserDTO userDTO = userMapper1.toDTO(userEntity);
+        return userDTO;
+    }
+    @Override
+    public UserDTO updateUser(Integer userId,UserDTO userDTO){
+        UserEntity existingUser = userRepo.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found with ID: " + userId));
+        existingUser.setName(userDTO.getName());
+        existingUser.setCity(userDTO.getCity());
+        existingUser.setGender(userDTO.getGender());
+        userRepo.save(existingUser);
         return userDTO;
     }
 }

@@ -24,18 +24,13 @@ public class AdminController {
     private CourseService courseService;
 
     private ApiResponse successResponse;
-    @PostMapping("/createTeacher")
+    @PostMapping("/teachers/create")
     public ResponseEntity<ApiResponse<?>> registerForTeacher(@RequestBody UserDTO teacher){
-        userService.createTeacher(teacher);
+         userService.createTeacher(teacher);
          successResponse = ApiResponse.success(HttpStatus.CREATED,HttpStatus.CREATED.value(),"Created Teacher Successfully");
          return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
     }
-    @PostMapping("/suspendUser/{userId}")
-    public ResponseEntity<ApiResponse<?>> suspendTeacher(@PathVariable("userId")Integer userId){
-        userService.suspendUser(userId);
-        successResponse = ApiResponse.success(HttpStatus.OK,HttpStatus.OK.value(),"Suspended Successfully");
-        return ResponseEntity.ok().body(successResponse);
-    }
+
     @GetMapping("/getAllActiveTeachers")
     public List<UserDTO> getAllActiveTeachers(){
         return userService.getAllActiveTeachers();
@@ -63,8 +58,16 @@ public class AdminController {
     }
     @PutMapping("/teachers/update/{id}")
     public ApiResponse<UserDTO> updateTeacher(@PathVariable("id")Integer trId,@RequestBody UserDTO teacher){
-        System.out.println(trId+" And "+teacher);
-        return new ApiResponse<UserDTO>();
+        userService.updateUser(trId,teacher);
+        successResponse =ApiResponse.success(HttpStatus.CREATED,HttpStatus.CREATED.value(),"Updated Teacher Successfully",teacher);
+        System.out.println(trId+" 4And "+teacher.toString());
+        return successResponse;
+    }
+    @PutMapping("/teachers/suspend/{id}")
+    public ResponseEntity<ApiResponse<?>> suspendTeacher(@PathVariable("id")Integer trId){
+        userService.suspendUser(trId);
+        successResponse = ApiResponse.success(HttpStatus.OK,HttpStatus.OK.value(),"Suspended Successfully");
+        return ResponseEntity.ok().body(successResponse);
     }
 
 }

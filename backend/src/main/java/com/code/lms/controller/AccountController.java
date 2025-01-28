@@ -20,14 +20,22 @@ public class AccountController {
 
     @Autowired
     private UserService userService;
-    @PostMapping("/login")
-    public ResponseEntity<ApiResponse<?>> doLogin(@RequestBody LoginDTO loginDTO) {
-        String status = null;
-        UserDTO user = accountService.login(loginDTO);
-        if(user.isForcePasswordChange()){
-            status = "Forced To Change Password";
-        }
-        ApiResponse successResponse = ApiResponse.success(HttpStatus.OK, HttpStatus.OK.value(), "Login Successful", user,status);
+//    @PostMapping("/login")
+//    public ResponseEntity<ApiResponse<?>> doLogin(@RequestBody LoginDTO loginDTO) {
+//        String status = null;
+//        UserDTO user = accountService.login(loginDTO);
+//        if(user.isForcePasswordChange()){
+//            status = "Forced To Change Password";
+//        }
+//        ApiResponse successResponse = ApiResponse.success(HttpStatus.OK, HttpStatus.OK.value(), "Login Successful", user,status);
+//        return new ResponseEntity<>(successResponse, HttpStatus.OK);
+//    }
+    @PostMapping("/login2")
+    public ResponseEntity<ApiResponse<?>> login(@RequestBody LoginDTO loginDTO){
+
+        //accountService.verify(loginDTO);
+
+        ApiResponse successResponse = ApiResponse.success(HttpStatus.OK, HttpStatus.OK.value(), "Login Successful");
         return new ResponseEntity<>(successResponse, HttpStatus.OK);
     }
     @PostMapping("/changePasswordForTeacher/{id}")

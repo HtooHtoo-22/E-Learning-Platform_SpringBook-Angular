@@ -4,16 +4,10 @@ import com.code.lms.model.entity.UserEntity;
 
 public class UserDTO {
 
+
+
+
     private Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     private String name;
     private String email;
     private String password;
@@ -26,6 +20,30 @@ public class UserDTO {
     private Integer adminId;
     private String adminName;
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                ", gender='" + gender + '\'' +
+                ", role='" + role + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", status='" + status + '\'' +
+                ", loginStatus='" + loginStatus + '\'' +
+                ", adminId=" + adminId +
+                ", adminName='" + adminName + '\'' +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public boolean isForcePasswordChange() {
         if(this.role.equals("Teacher")&&this.loginStatus.equals("Unlogin")){
             return true;

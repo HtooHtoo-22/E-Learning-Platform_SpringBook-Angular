@@ -1,6 +1,7 @@
 package com.code.lms.service;
 
 import com.code.lms.dto.UserDTO;
+import com.code.lms.util.ApiResponse;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface UserService {
     public List<UserDTO> getAllActiveStudents();
     public List<UserDTO> getAllSuspendedStudents();
     public UserDTO getUserById(Integer id);
+    public UserDTO updateUser(Integer userId ,UserDTO userDTO);
 }
