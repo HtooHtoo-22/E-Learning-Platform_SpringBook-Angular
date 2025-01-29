@@ -13,7 +13,10 @@ export class AccountService {
 
   constructor(private http : HttpClient) { }
 
-  login(loginDTO: LoginDTO): Observable<ApiResponse<any>> {
-    return this.http.post<ApiResponse<any>>(`${this.apiUrl}/login`, loginDTO);
+  login(loginDTO: LoginDTO): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/login`, loginDTO, {
+      responseType: 'text' as 'json'  // Specify that the response is a plain text string (JWT token)
+    });
   }
+
 }

@@ -44,19 +44,29 @@ export class LoginComponent {
     
     // Simulate API call (replace with actual login service)
     this.accountService.login(this.loginDTO).subscribe({
-      next: (response) => {
+      next: (token: string) => {
         this.isLoading = false;
         this.message = 'Login successful!';
         this.isSuccess = true;
-
-        // Navigate to another page (e.g., dashboard) after successful login
-        
+    
+        // Store the token in localStorage or sessionStorage
+        localStorage.setItem('authToken', token);  // Replace 'authToken' with your actual key
+  
       },
       error: (error) => {
         this.isLoading = false;
-        this.message = error.error?.message || 'Login failed. Please try again.';
+        // Log the error for debugging
+        console.error('Login error: ', error);
+    
+        // Handle different types of error responses
+        if (error.status === 401) {
+          this.message = 'Invalid credentials. Please try again.';
+        } else {
+          this.message = error.error?.message || 'Login failed. Please try again.';
+        }
         this.isSuccess = false;
       }
-    }); // Simulate a 2-second delay for API call
+    });
+    
   }
 }
