@@ -12,6 +12,7 @@ import com.code.lms.util.exception.InvalidEmailException;
 import com.code.lms.util.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,18 +52,17 @@ public class AccountServiceImpl implements AccountService {
         return "fail";
     }
     public String login(LoginDTO loginDTO) {
-        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken
-                (loginDTO.getEmail(),loginDTO.getPassword()));
-        if(authentication.isAuthenticated())
+        try {
+            Authentication authentication = authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
             return jwtService.generateToken(loginDTO.getEmail());
-        else{
-            System.out.println("Wrong Wrong password");
-            throw new IncorrectPasswordException("Wrong Wrong Password");
+        } catch (BadCredentialsException e) {
+            throw new IncorrectPasswordException("Wrong password Kwa!");
         }
-
     }
 
-//    public UserDTO login(LoginDTO loginDTO){
+
+    //    public UserDTO login(LoginDTO loginDTO){
 //        UserEntity user = userRepo.findByEmailAndStatus(loginDTO.getEmail(), UserEntity.Status.ACTIVE);
 //        if(user == null){
 //            throw new InvalidEmailException("Invalid Email");

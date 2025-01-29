@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Account")
+@RequestMapping("/api/account")
 public class AccountController {
 
     @Autowired
@@ -30,16 +30,17 @@ public class AccountController {
 //        ApiResponse successResponse = ApiResponse.success(HttpStatus.OK, HttpStatus.OK.value(), "Login Successful", user,status);
 //        return new ResponseEntity<>(successResponse, HttpStatus.OK);
 //    }
-    @PostMapping("/login2")
+    @PostMapping("/login")
     public ResponseEntity<ApiResponse<?>> login(@RequestBody LoginDTO loginDTO){
 
-        //accountService.verify(loginDTO);
+        String token = accountService.login(loginDTO);
+        System.out.println(token);
 
         ApiResponse successResponse = ApiResponse.success(HttpStatus.OK, HttpStatus.OK.value(), "Login Successful");
         return new ResponseEntity<>(successResponse, HttpStatus.OK);
     }
     @PostMapping("/changePasswordForTeacher/{id}")
-    public ResponseEntity<ApiResponse<?>> changeTeacherPassowrd(@PathVariable("id")Integer id,
+    public ResponseEntity<ApiResponse<UserDTO>> changeTeacherPassowrd(@PathVariable("id")Integer id,
                                                                 @RequestBody ChangePasswordDTO chgPasswrdDTO){
         UserDTO user = accountService.changePassword(id,chgPasswrdDTO.getNewPassword());
         ApiResponse successResponse = ApiResponse.success(HttpStatus.OK,HttpStatus.OK.value(),"Change Password Successfully");

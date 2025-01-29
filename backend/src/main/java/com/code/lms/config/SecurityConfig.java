@@ -40,8 +40,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-//                        .requestMatchers("testRegister","testLogin","students")
-//                        .permitAll()
+                        .requestMatchers("api/account/login")
+                        .permitAll()
                         .anyRequest().authenticated())//any request to the application must be authenticated
                 .formLogin(Customizer.withDefaults())// Configures a login form for authentication.|Uses the default login form provided by Spring Security.
                 .httpBasic(Customizer.withDefaults())//Configures HTTP Basic Authentication.

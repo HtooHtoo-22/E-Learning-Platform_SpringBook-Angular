@@ -4,9 +4,11 @@ import { StudentListComponent } from './components/my-components/student/student
 import { TeacherListComponent } from './components/my-components/teacher/teacher-list/teacher-list.component';
 import { TeacherEditComponent } from './components/my-components/teacher/teacher-edit/teacher-edit.component';
 import { TeacherCreateComponent } from './components/my-components/teacher/teacher-create/teacher-create.component';
+import { LoginComponent } from './components/my-components/login/login.component';
 
 const routes: Routes = [
-  {path: '',component: StudentListComponent},
+  {path: '',component: LoginComponent},
+  {path: 'login',component: LoginComponent},
   {path: 'teacher',component: TeacherListComponent},
   {path: 'teacher/editteacher/:id',component: TeacherEditComponent},
   {path: 'teacher/create',component: TeacherCreateComponent}

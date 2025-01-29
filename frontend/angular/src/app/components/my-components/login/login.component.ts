@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '../../../services/account.service';
+
+import { LoginDTO } from '../../../models/loginDTO';
+import { AccountService } from '../../../services/account/account.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginComponent {
   message: string = '';
   isSuccess: boolean = false;
   isLoading: boolean = false;
+  loginDTO !: LoginDTO ;
 
   constructor(private fb: FormBuilder , private accountService:AccountService) {}
 
@@ -24,7 +27,7 @@ export class LoginComponent {
   initializeForm(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
 
@@ -36,16 +39,18 @@ export class LoginComponent {
     this.isLoading = true;
     this.message = '';
     this.isSuccess = false;
-
+    this.loginDTO = this.loginForm.value;
+    console.log(this.loginDTO);
+    
     // Simulate API call (replace with actual login service)
-    this.accountService.login(this.loginForm.value).subscribe({
+    this.accountService.login(this.loginDTO).subscribe({
       next: (response) => {
         this.isLoading = false;
         this.message = 'Login successful!';
         this.isSuccess = true;
 
         // Navigate to another page (e.g., dashboard) after successful login
-        this.router.navigate(['/dashboard']);
+        
       },
       error: (error) => {
         this.isLoading = false;

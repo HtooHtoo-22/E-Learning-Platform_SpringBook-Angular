@@ -5,6 +5,7 @@ import com.code.lms.model.entity.User;
 import com.code.lms.model.entity.UserEntity;
 import com.code.lms.repository.TestUserRepo;
 import com.code.lms.repository.UserRepository;
+import com.code.lms.util.exception.InvalidEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -34,13 +35,9 @@ public class UserDetailServicesImpl implements UserDetailsService {
         System.out.println(email);
         UserEntity user = userRepo.findByEmail(email);
         if(user==null){
-            System.out.println("Email Not found");
-            throw new UsernameNotFoundException("Email Email not found");
+            throw new InvalidEmailException("This Email is not found!");
         }else{
-            //a custom implementation of UserDetails
-            System.out.println("User found: " + user.getEmail());
             UserPrincipal userPrincipal = new UserPrincipal(user);
-            System.out.println("UserPrincipal created: " + userPrincipal.getUsername());
             return userPrincipal;
         }
 
