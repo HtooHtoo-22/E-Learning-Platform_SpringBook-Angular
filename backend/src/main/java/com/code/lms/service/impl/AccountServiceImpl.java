@@ -48,14 +48,19 @@ public class AccountServiceImpl implements AccountService {
         Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken
                 (user.getUserName(),user.getPassword()));
         if(authentication.isAuthenticated())
-            return jwtService.generateToken(user.getUserName());
+           // return jwtService.generateToken(user.getUserName());
+            return null;
         return "fail";
     }
     public String login(LoginDTO loginDTO) {
         try {
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
-            return jwtService.generateToken(loginDTO.getEmail());
+            if(authentication.isAuthenticated()){
+                UserEntity user = userRepo.findByEmail(loginDTO.getEmail());
+                return jwtService.generateToken(user.getName(),user.getEmail(),user.getRole());
+            }
+           return null;
         } catch (BadCredentialsException e) {
             throw new IncorrectPasswordException("Wrong password Kwa!");
         }

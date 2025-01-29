@@ -30,8 +30,10 @@ public class JWTService {
             throw new RuntimeException(e);
         }
     }
-    public String generateToken(String userName){
+    public String generateToken(String userName,String email , String role){
         Map<String,Object> claims = new HashMap<>();
+        claims.put("email", email);  // Add email to claims
+        claims.put("role", role);
         return Jwts
                 .builder()
                 .claims()
