@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginDTO } from '../../../models/loginDTO';
 import { AccountService } from '../../../services/account/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +18,9 @@ export class LoginComponent {
   isSuccess: boolean = false;
   isLoading: boolean = false;
   loginDTO !: LoginDTO ;
-
-  constructor(private fb: FormBuilder , private accountService:AccountService) {}
+  isAuthenticated: boolean = false;
+  constructor(private fb: FormBuilder , private accountService:AccountService, private router: Router) {}
+  
 
   ngOnInit(): void {
     this.initializeForm();
@@ -50,8 +52,14 @@ export class LoginComponent {
         this.isSuccess = true;
     
         // Store the token in localStorage or sessionStorage
-        localStorage.setItem('authToken', token);  // Replace 'authToken' with your actual key
-  
+        localStorage.setItem('authToken', token);
+        this.isAuthenticated = true;
+  // Replace 'authToken' with your actual key
+        this.router.navigate(['/teacher']).then(() => {
+          console.log('Navigation successful to /teacher');
+        }).catch((error) => {
+          console.error('Navigation error:', error);
+        });
       },
       error: (error) => {
         this.isLoading = false;

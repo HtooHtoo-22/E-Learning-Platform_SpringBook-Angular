@@ -1,4 +1,7 @@
-<div class="app-container">
+<!-- app.component.html -->
+
+<!-- Display Sidebar and Main Content after login -->
+<div *ngIf="isAuthenticated">
   <!-- Sidebar -->
   <app-sidebar></app-sidebar>
 
@@ -6,4 +9,9 @@
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
+</div>
+
+<!-- Display Login Form if not authenticated -->
+<div *ngIf="!isAuthenticated">
+  <app-login></app-login> <!-- Your login form component -->
 </div>
